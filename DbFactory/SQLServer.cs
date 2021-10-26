@@ -9,7 +9,7 @@ namespace DbFactory
         public SQLServer()
         {
             using (this.Connection =
-                new SqlConnection("Server=10.148.73.5;Database=SwiftDB;User=sa;Password=Q1w2e3r4;"))
+                new SqlConnection(@"Server=.\SQLExpress;Database=SwiftDB;Trusted_Connection=True;"))
             {
                 Console.WriteLine("Db connected!!!");
             }           
@@ -17,6 +17,6 @@ namespace DbFactory
 
         public SqlConnection Connection { get; set; }
 
-        //Failure App.Config 
+        //Fa
     }
 }
