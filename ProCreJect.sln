@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProCreJect", "ProCreJect\ProCreJect.csproj", "{522A3B8C-BBA9-47AC-BEBD-73AB72A0F50C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbFactory", "DbFactory\DbFactory.csproj", "{26A70AF5-7BFD-4759-ADCC-258CD82873AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{522A3B8C-BBA9-47AC-BEBD-73AB72A0F50C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{522A3B8C-BBA9-47AC-BEBD-73AB72A0F50C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{522A3B8C-BBA9-47AC-BEBD-73AB72A0F50C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26A70AF5-7BFD-4759-ADCC-258CD82873AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26A70AF5-7BFD-4759-ADCC-258CD82873AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26A70AF5-7BFD-4759-ADCC-258CD82873AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26A70AF5-7BFD-4759-ADCC-258CD82873AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

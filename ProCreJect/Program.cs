@@ -1,8 +1,7 @@
-﻿using System;
+﻿using DbFactory;
+using DbFactory.Contracts;
+using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Text.RegularExpressions;
-using System.Linq;
 
 namespace ProCreJect
 {
@@ -13,18 +12,24 @@ namespace ProCreJect
             var baseDir = AppDomain.CurrentDomain.BaseDirectory;
             string fileName = @"C:\Users\oilaripi\source\repos\ProCreJect\ProCreJect\bin\Debug\netcoreapp3.1\swift\t.txt";
 
-            string message = System.IO.File.ReadAllText(fileName);
+            string rawMessage = System.IO.File.ReadAllText(fileName);
 
             var shreder = new Shredding();
 
-            var str = shreder.ShrederSWIFTFile(message);
+            var message = shreder.ShrederSWIFTFile(rawMessage);
 
             string textBody;
-            if(str.TryGetValue("TextBlock", out textBody))
+            Dictionary<string, string> textBlocks = new Dictionary<string, string>();
+            if (message.TryGetValue("TextBlock", out textBody))
             {
-                var shrededBody = shreder.ShrederBody(textBody);
+                textBlocks = shreder.ShrederBody(textBody);
             }
 
+            IDBFactory factory = new DBFactory();
+            var relationDb = factory.CreateRelationDB("SQLServerDB");
+            var dbInsert = new DataInsert(relationDb);
+
+            dbInsert.InsertMessage(message, textBlocks);
             return;
         }        
     }

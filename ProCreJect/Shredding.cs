@@ -19,6 +19,10 @@ namespace ProCreJect
         private readonly string openCurlyBracket = $"{{{0}}}:";
         private const string clossedCurlyBracket = "}";
 
+        private const string header1 = "Header1";
+        private const string header2 = "Header2";
+        private const string header3 = "Header3";
+
         public Dictionary<string, string> ShrederSWIFTFile(string message)
         {
             Dictionary<string, string> swiftMessage = new Dictionary<string, string>();
@@ -28,7 +32,7 @@ namespace ProCreJect
             {
                 string Block1 = message.Between(matchPattern, clossedCurlyBracket);
                 swiftMessage.Add("BasicHeader", Block1);
-            }
+            }   
 
             matchPattern = String.Format(openCurlyBracket, fieldTwo);
             if (message.Contains(matchPattern))
@@ -63,24 +67,22 @@ namespace ProCreJect
             return swiftMessage;
         }                
 
-        public List<string> ShrederBody(string body)
+        public Dictionary<string, string> ShrederBody(string body)
         {
             var s = body.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
-            var bodyMessages = new List<string>();
+            var bodyMessages = new Dictionary<string, string>();
 
             var pattern = @"(?m):[0-9][0-9]:";
             //var pattern = @":\d+:(.*?)(?=:)";
             //var pattern = @":\d+:(.*?)(?=:(.*))"; 
 
             var indexes = Regex.Matches(body, pattern).Select(i => i.Index).ToList();
-
-            bodyMessages.Add(
+            bodyMessages.Add(header1, 
                 body.Substring(indexes[0] + patternSize, indexes[1] - patternSize).TrimEnd());
-            bodyMessages.Add(
+            bodyMessages.Add(header2,
                 body.Substring(indexes[1] + patternSize, indexes[2] - (indexes[1] + patternSize)));
-            bodyMessages.Add(body.Substring(indexes[2] + patternSize, (body.Length - indexes[2] - patternSize)));
-            //optional remove '-' last char from
-            bodyMessages[2] = bodyMessages[2].Remove(bodyMessages[2].Length - 1);
+            bodyMessages.Add(header3,
+                body.Substring(indexes[2] + patternSize, (body.Length - indexes[2] - patternSize)));
 
             return bodyMessages;
         }

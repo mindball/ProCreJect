@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ProCreJect
+﻿namespace ProCreJect
 {
     public static class StringExtensions
     { 
@@ -15,10 +11,12 @@ namespace ProCreJect
             {
                 return "";
             }
+
             if (posB == -1)
             {
                 return "";
             }
+
             int adjustedPosA = posA + a.Length;
             if (adjustedPosA >= posB)
             {
