@@ -30,8 +30,8 @@ namespace DbFactory
                 var insertTextBlock = "INSERT INTO TextBlock(Header1, Header2, Header3) VALUES (@Header1, @Header2, @Header3)";
                 
                 //TODO: when needed it make async command
-                var lastId = this.SqlServer.Connection.Execute(insertTextBlock, newTextBlock);
-                if (lastId > 0)
+                var affectedTextBlockRows = this.SqlServer.Connection.Execute(insertTextBlock, newTextBlock);
+                if (affectedTextBlockRows > 0)
                 {
                     var getIdByHeader = "SELECT Id From TextBlock WHERE Header1 = @Header1 AND Header2 = @Header2 AND Header3 = @Header3";
                     //TODO: when needed it make async command
@@ -44,7 +44,7 @@ namespace DbFactory
                             "INSERT INTO Message(BasicHeader, ApplicationHeader, TextBlockId, Trailer) " +
                                     "VALUES (@BasicHeader, @ApplicationHeader, @TextBlockId, @Trailer)";
                         //TODO: when needed it make async command
-                        var messageRow = this.SqlServer.Connection.Execute(insertMessage, newMessage);
+                        var affectedMessageRow = this.SqlServer.Connection.Execute(insertMessage, newMessage);
                     }
                 }
             } 
