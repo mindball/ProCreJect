@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProCreJect", "ProCreJect\Pr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbFactory", "DbFactory\DbFactory.csproj", "{26A70AF5-7BFD-4759-ADCC-258CD82873AB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinServiceHandleSwiftMessage", "WinServiceHandleSwiftMessage\WinServiceHandleSwiftMessage.csproj", "{F4ED2AF9-9D60-48EB-85DB-310A5714E33B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shredding", "Shredding\Shredding.csproj", "{163194DA-1F61-4FEA-B7BF-3838391D4E16}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{26A70AF5-7BFD-4759-ADCC-258CD82873AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26A70AF5-7BFD-4759-ADCC-258CD82873AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26A70AF5-7BFD-4759-ADCC-258CD82873AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4ED2AF9-9D60-48EB-85DB-310A5714E33B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4ED2AF9-9D60-48EB-85DB-310A5714E33B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4ED2AF9-9D60-48EB-85DB-310A5714E33B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4ED2AF9-9D60-48EB-85DB-310A5714E33B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{163194DA-1F61-4FEA-B7BF-3838391D4E16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{163194DA-1F61-4FEA-B7BF-3838391D4E16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{163194DA-1F61-4FEA-B7BF-3838391D4E16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{163194DA-1F61-4FEA-B7BF-3838391D4E16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

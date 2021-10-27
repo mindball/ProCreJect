@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace ProCreJect
+namespace Shredding
 {
-    public class Shredding
+    public class ShreddingFile
     {
         private const string CrLf = "\r\n";
         private readonly int patternSize = ":00:".Length;

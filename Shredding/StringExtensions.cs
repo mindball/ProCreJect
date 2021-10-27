@@ -1,4 +1,4 @@
-﻿namespace ProCreJect
+﻿namespace Shredding
 {
     public static class StringExtensions
     { 

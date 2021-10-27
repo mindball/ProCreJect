@@ -10,9 +10,9 @@ namespace DbFactory
 
         public string GetConnectionString()
         {
-            var a = ConfigurationManager.ConnectionStrings;
+            var config = ConfigurationManager.ConnectionStrings;
 
-            return a[1].ConnectionString;
+            return config[1].ConnectionString;
         }
     }
 }

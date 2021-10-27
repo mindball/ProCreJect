@@ -50,16 +50,16 @@ namespace DbFactory
             } 
          }
 
-        private T CreateMessage<T>(T model, Dictionary<string, string> textBlocks)
+        private T CreateMessage<T>(T model, Dictionary<string, string> contents)
         {            
             var propertyInfos = model.GetType()
                 .GetProperties(BindingFlags.Public | BindingFlags.Instance);
 
             foreach (var property in propertyInfos)
             {
-                if (textBlocks.ContainsKey(property.Name))
+                if (contents.ContainsKey(property.Name))
                 {
-                    property.SetValue(model, textBlocks[property.Name]);
+                    property.SetValue(model, contents[property.Name]);
                 }
             }
 
