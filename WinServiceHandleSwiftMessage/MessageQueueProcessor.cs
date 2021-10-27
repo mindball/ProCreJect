@@ -10,26 +10,19 @@ namespace WinServiceHandleSwiftMessage
 {
     public class MessageQueueProcessor : IDisposable
     {
-        public const string InPath = @"C:\Data\MessageQueue\in";
-        public const string ProcessedPath = @"C:\Data\MessageQueue\processed";
+        public const string InPath = @"C:\Data\MessageQueue\in";        
         private FileSystemWatcher fileSystemWatcher;
 
         public void Start()
         {
             fileSystemWatcher = new FileSystemWatcher(InPath, "*.txt");
             fileSystemWatcher.EnableRaisingEvents = true;
+            //Look at when file is changed
             fileSystemWatcher.Created += (sender, e) =>
             {
                 Console.WriteLine($"Processing enqueued file {e.Name}");
-
-                //var destFile = Path.Combine(@"C:\Data\MessageQueue\processed", e.FullPath);
-
-                //if (File.Exists(e.FullPath))
-                //{
-                //    File.Move(e.FullPath, destFile);
-                //}
-
-                string rawMessage = File.ReadAllText(e.FullPath);
+                var path = e.FullPath;
+                string rawMessage = File.ReadAllText(path);
                 var shreder = new ShreddingFile();
                 var message = shreder.ShrederSWIFTFile(rawMessage);
 
@@ -46,6 +39,8 @@ namespace WinServiceHandleSwiftMessage
 
                 dbInsert.InsertMessage(message, textBlocks);
             };
+
+            //this.Dispose();
         }
 
         public void Dispose()
