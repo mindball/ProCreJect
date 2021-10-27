@@ -1,9 +1,14 @@
 ﻿using DbFactory.Contracts;
 using DbFactory.Models;
-using System;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
+using Dapper;
+using System;
+
+using System.Data.SqlClient;
+using System.Linq;
+using System.Data;
+using System.Threading.Tasks;
 
 namespace DbFactory
 {
@@ -19,32 +24,47 @@ namespace DbFactory
         public void InsertMessage(Dictionary<string, string> message,
             Dictionary<string, string> textBlocks)
         {
-            //Some validations
-            if (message.Count == 0 ||
-                textBlocks.Count == 0)
+            var newTextBlock = CreateMessage(new TextBlock(), textBlocks);
+            var newMessage = CreateMessage(new Message(), message);
+
+            //TODO: make validation when header exist
+            var insertTextBlock = "INSERT INTO TextBlock(Header1, Header2, Header3) VALUES (@Header1, @Header2, @Header3)";
+            
+            using (this.SqlServer.Connection = new SqlConnection("Server=10.148.73.5;Database=SwiftDB;User=sa;Password = Q1w2e3r4"))
             {
-                return;
-            }
+                var lastId = this.SqlServer.Connection.Execute(insertTextBlock, newTextBlock);
+                if (lastId > 0)
+                {
+                    var getIdByHeader = "SELECT Id From TextBlock WHERE Header1 = @Header1 AND Header2 = @Header2 AND Header3 = @Header3";
+                    var textBlockId = this.SqlServer.Connection.Query<int>(getIdByHeader, newTextBlock).Single();
 
-            var newTextBlock = CreateNewTextBlock(textBlocks);
-        }
+                    if(textBlockId > 0)
+                    {
+                        newMessage.TextBlockId = textBlockId;
+                        var insertMessage =
+                            "INSERT INTO Message(BasicHeader, ApplicationHeader, TextBlockId, Trailer) " +
+                                    "VALUES (@BasicHeader, @ApplicationHeader, @TextBlockId, @Trailer)";
 
-        private TextBlock CreateNewTextBlock(Dictionary<string, string> textBlocks)
-        {
-            var newTextBlock = new TextBlock();
-            var propertyInfos = newTextBlock.GetType()
+                        var messageRow = this.SqlServer.Connection.Execute(insertMessage, newMessage);
+                    }
+                }
+            } 
+         }
+
+        private T CreateMessage<T>(T model, Dictionary<string, string> textBlocks)
+        {            
+            var propertyInfos = model.GetType()
                 .GetProperties(BindingFlags.Public | BindingFlags.Instance);
 
             foreach (var property in propertyInfos)
             {
                 if (textBlocks.ContainsKey(property.Name))
                 {
-                    property.SetValue(newTextBlock, textBlocks[property.Name]);
+                    property.SetValue(model, textBlocks[property.Name]);
                 }
             }
 
-
-            return null;
-        }
+            return model;
+        }       
     }
 }
