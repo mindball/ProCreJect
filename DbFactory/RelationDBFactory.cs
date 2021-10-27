@@ -9,7 +9,6 @@ namespace DbFactory
         {
             if (dbName == "SQLServerDB")
                 return new SQLServer();
-
            
             throw new ArgumentException("dbName is invalid");
         }

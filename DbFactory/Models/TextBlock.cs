@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DbFactory.Models
+﻿namespace DbFactory.Models
 {
     public class TextBlock
     {       
