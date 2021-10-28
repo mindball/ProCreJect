@@ -22,6 +22,7 @@
             {
                 return "";
             }
+
             return value.Substring(adjustedPosA, posB - adjustedPosA);
         }
 

@@ -23,23 +23,42 @@ namespace Shredding
         private const string header2 = "Header2";
         private const string header3 = "Header3";
 
-        public Dictionary<string, string> ShrederSWIFTFile(string message)
+        private const string messageBasicHeader = "BasicHeader";
+        private const string messageApplicationHeader = "ApplicationHeader";
+        private const string messageTrailer = "Trailer";
+
+        private Dictionary<string, string> swiftMessage;
+        private string message;
+
+        public ShreddingFile(string message)
         {
-            Dictionary<string, string> swiftMessage = new Dictionary<string, string>();
+            this.message = message;
+            this.swiftMessage = new Dictionary<string, string>();
+        }
 
+        public Dictionary<string, string> ShrederSWIFTFile()
+        {
+            ////////////////////// BASIC HEADER //////////////////////////////
             string matchPattern = String.Format(openCurlyBracket, fieldOne);
-            if (message.Contains(matchPattern))
-            {
-                string Block1 = message.Between(matchPattern, clossedCurlyBracket);
-                swiftMessage.Add("BasicHeader", Block1);
-            }   
+            //if (this.message.Contains(matchPattern))
+            //{
+            //    string Block1 = message.Between(matchPattern, clossedCurlyBracket);
+            //    swiftMessage.Add("BasicHeader", Block1);
+            //}
+            string basicheader = this.PartMessage(matchPattern);
+            if (!string.IsNullOrEmpty(basicheader))
+                swiftMessage.Add(messageBasicHeader, basicheader);
 
+            ////////////////////// APPLICATION HEADER //////////////////////////////
             matchPattern = String.Format(openCurlyBracket, fieldTwo);
-            if (message.Contains(matchPattern))
-            {
-                string Block2 = message.Between(matchPattern, clossedCurlyBracket);
-                swiftMessage.Add("ApplicationHeader", Block2);
-            }
+            //if (this.message.Contains(matchPattern))
+            //{
+            //    string Block2 = message.Between(matchPattern, clossedCurlyBracket);
+            //    swiftMessage.Add("ApplicationHeader", Block2);
+            //}
+            string applicationheader = this.PartMessage(matchPattern);
+            if (!string.IsNullOrEmpty(applicationheader))
+                swiftMessage.Add(messageApplicationHeader, applicationheader);
 
             //Това го няма в файла
             //matchPattern = String.Format(openCurlyBracket, fieldThree);
@@ -49,20 +68,29 @@ namespace Shredding
             //    swiftMessage.Add("UserHeader", Block3);
             //}
 
+            ////////////////////// BODY //////////////////////////////
             matchPattern = String.Format(openCurlyBracket, fieldFour);
-            if (message.Contains(matchPattern))
-            {
-                string Block4 = message.Between(matchPattern, clossedCurlyBracket)
-                    .Replace(CrLf, string.Empty).TrimStart();
-                swiftMessage.Add("TextBlock", Block4);
-            }
+            //if (this.message.Contains(matchPattern))
+            //{
+            //    string Block4 = message.Between(matchPattern, clossedCurlyBracket)
+            //        .Replace(CrLf, string.Empty).TrimStart();
+            //    swiftMessage.Add("TextBlock", Block4);
+            //}
+            string body = this.PartMessage(matchPattern).Replace(CrLf, string.Empty).TrimStart(); ;
+            if (!string.IsNullOrEmpty(body))
+                swiftMessage.Add(nameof(body), body);
 
+            ////////////////////// TRAILER //////////////////////////////
             matchPattern = String.Format(openCurlyBracket, fieldFive);
-            if (message.Contains(matchPattern))
-            {
-                string Block5 = message.Between(matchPattern, clossedCurlyBracket);
-                swiftMessage.Add("Trailer", Block5);
-            }
+            //if (this.message.Contains(matchPattern))
+            //{
+            //    string Block5 = message.Between(matchPattern, clossedCurlyBracket);
+            //    swiftMessage.Add("Trailer", Block5);
+            //}
+
+            string trailer = this.PartMessage(matchPattern);
+            if(!string.IsNullOrEmpty(trailer))
+                swiftMessage.Add(messageTrailer, trailer);
 
             return swiftMessage;
         }                
@@ -85,6 +113,17 @@ namespace Shredding
                 body.Substring(indexes[2] + patternSize, (body.Length - indexes[2] - patternSize)));
 
             return bodyMessages;
+        }
+
+        public string PartMessage(string openMatch)
+        {
+            string block = "";
+            if (this.message.Contains(openMatch))
+            {
+                block = this.message.Between(openMatch, clossedCurlyBracket);
+            }
+            
+            return block;
         }
     }
 }

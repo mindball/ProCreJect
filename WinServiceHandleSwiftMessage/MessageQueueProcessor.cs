@@ -37,12 +37,12 @@ namespace WinServiceHandleSwiftMessage
         private void ProceedSwiftMsg(string path)
         {
             string rawMessage = File.ReadAllText(path);
-            var shreder = new ShreddingFile();
-            var message = shreder.ShrederSWIFTFile(rawMessage);
+            var shreder = new ShreddingFile(rawMessage);
+            var message = shreder.ShrederSWIFTFile();
 
             string textBody;
             Dictionary<string, string> textBlocks = new Dictionary<string, string>();
-            if (message.TryGetValue("TextBlock", out textBody))
+            if (message.TryGetValue("body", out textBody))
             {
                 textBlocks = shreder.ShrederBody(textBody);
             }
