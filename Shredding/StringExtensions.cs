@@ -2,22 +2,32 @@
 {
     public static class StringExtensions
     { 
-        public static string Between(this string value, string a, string b)
+        public static string Between(
+            this string value, 
+            string openCurlyBracketWithNumber, 
+            string b)
         {
-            int posA = value.IndexOf(a);
-            int posB = value.IndexOf(b, posA);
-
-            if (posA == -1)
+            if(string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
             {
                 return "";
             }
+            
+            int posA = value.IndexOf(openCurlyBracketWithNumber);
 
+            if(posA == -1)
+            {
+                //Or throw exception when open curly bracket not found
+                return "";
+            }
+
+            int posB = value.IndexOf(b, posA);
+            
             if (posB == -1)
             {
                 return "";
             }
 
-            int adjustedPosA = posA + a.Length;
+            int adjustedPosA = posA + openCurlyBracketWithNumber.Length;
             if (adjustedPosA >= posB)
             {
                 return "";

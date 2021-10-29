@@ -17,7 +17,7 @@ namespace Shredding
         private const int fieldFive = 5;
 
         private readonly string openCurlyBracket = $"{{{0}}}:";
-        private const string clossedCurlyBracket = "}";
+        private const string closedCurlyBracket = "}";
 
         private const string header1 = "Header1";
         private const string header2 = "Header2";
@@ -120,7 +120,7 @@ namespace Shredding
             string block = "";
             if (this.message.Contains(openMatch))
             {
-                block = this.message.Between(openMatch, clossedCurlyBracket);
+                block = this.message.Between(openMatch, closedCurlyBracket);
             }
             
             return block;

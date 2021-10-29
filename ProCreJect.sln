@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProCreJect", "ProCreJect\ProCreJect.csproj", "{522A3B8C-BBA9-47AC-BEBD-73AB72A0F50C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProCreJect", "ProCreJect\ProCreJect.csproj", "{522A3B8C-BBA9-47AC-BEBD-73AB72A0F50C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbFactory", "DbFactory\DbFactory.csproj", "{26A70AF5-7BFD-4759-ADCC-258CD82873AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbFactory", "DbFactory\DbFactory.csproj", "{26A70AF5-7BFD-4759-ADCC-258CD82873AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinServiceHandleSwiftMessage", "WinServiceHandleSwiftMessage\WinServiceHandleSwiftMessage.csproj", "{F4ED2AF9-9D60-48EB-85DB-310A5714E33B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinServiceHandleSwiftMessage", "WinServiceHandleSwiftMessage\WinServiceHandleSwiftMessage.csproj", "{F4ED2AF9-9D60-48EB-85DB-310A5714E33B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shredding", "Shredding\Shredding.csproj", "{163194DA-1F61-4FEA-B7BF-3838391D4E16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shredding", "Shredding\Shredding.csproj", "{163194DA-1F61-4FEA-B7BF-3838391D4E16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shredding.Test", "Shredding.Test\Shredding.Test.csproj", "{E5C6DC50-AC3A-4C42-B51E-917511636420}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{163194DA-1F61-4FEA-B7BF-3838391D4E16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{163194DA-1F61-4FEA-B7BF-3838391D4E16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{163194DA-1F61-4FEA-B7BF-3838391D4E16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5C6DC50-AC3A-4C42-B51E-917511636420}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5C6DC50-AC3A-4C42-B51E-917511636420}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5C6DC50-AC3A-4C42-B51E-917511636420}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5C6DC50-AC3A-4C42-B51E-917511636420}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
